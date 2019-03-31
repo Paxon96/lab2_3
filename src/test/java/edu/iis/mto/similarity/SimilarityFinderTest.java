@@ -89,6 +89,16 @@ public class SimilarityFinderTest {
     }
 
 
+    @Test
+    public void jackardSimilarityNumberOfCallsForFirsSequenceTest(){
+        int[] firstSequence = {1,2,3,4,5,6,7};
+        int[] secondSequence = {1,2,3,4,5,6,7,88,99,111,222,333};
+
+        finder.calculateJackardSimilarity(firstSequence,secondSequence);
+
+        Assert.assertThat(SequenceSearcherDubler.getCallsNumber(),is(equalTo(firstSequence.length)) );
+    }
+
     private double calculateIntersection(int firstSeqLength, int secondSeqLength, int numberOfTheSameValues){
         return (double) numberOfTheSameValues / ((double) firstSeqLength + secondSeqLength - numberOfTheSameValues);
     }
