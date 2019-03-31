@@ -72,10 +72,20 @@ public class SimilarityFinderTest {
 
     @Test
     public void jackardSimilaritySequencesDifferentSizesWithPartCommonElementTest() {
+        int[] firstSequence = {1,2,3,4,5,6,7};
+        int[] secondSequence = {1,2,3,4,5,6,77,88,99,111,222,333};
+
+        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 6);
+        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
     public void jackardSimilaritySequencesDifferentSizesWithAllCommonElementTest() {
+        int[] firstSequence = {1,2,3,4,5,6,7};
+        int[] secondSequence = {1,2,3,4,5,6,7,88,99,111,222,333};
+
+        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 7);
+        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
 
