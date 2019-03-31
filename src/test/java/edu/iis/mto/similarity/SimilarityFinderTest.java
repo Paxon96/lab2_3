@@ -11,8 +11,6 @@ import static org.hamcrest.Matchers.is;
 public class SimilarityFinderTest {
 
     private SimilarityFinder finder;
-    private final double SAME_SEQUENCES = 1.0;
-    private final double DIFFERENT_SEQUENCES = 0.0;
 
     @Before
     public void init(){
@@ -24,15 +22,15 @@ public class SimilarityFinderTest {
         int[] firstSequence = {};
         int[] secondSequence = {};
 
-        Assert.assertThat(SAME_SEQUENCES,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(1.0 ,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
     public void jackardSimilarityWithEmptySequenceTest() {
         int[] firstSequence = {1,2,3,4,5};
         int[] secondSequence = {};
-
-        Assert.assertThat(DIFFERENT_SEQUENCES,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        double expectedIntersecton = calculateIntersection(firstSequence.length, secondSequence.length, 0);
+        Assert.assertThat(expectedIntersecton,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
