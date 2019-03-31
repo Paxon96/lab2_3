@@ -94,6 +94,8 @@ public class SimilarityFinderTest {
         int[] firstSequence = {1,2,3,4,5,6,7};
         int[] secondSequence = {1,2,3,4,5,6,7,88,99,111,222,333};
 
+        SequenceSearcherDubler.setCallsNumber(0);
+
         finder.calculateJackardSimilarity(firstSequence,secondSequence);
 
         Assert.assertThat(SequenceSearcherDubler.getCallsNumber(),is(equalTo(firstSequence.length)) );

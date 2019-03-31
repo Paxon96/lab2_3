@@ -11,6 +11,10 @@ public class SequenceSearcherDubler implements SequenceSearcher {
         return callsNumber;
     }
 
+    public static void setCallsNumber(int callsNumber) {
+        SequenceSearcherDubler.callsNumber = callsNumber;
+    }
+
     @Override
     public SearchResult search(int key, int[] seq) {
         callsNumber ++;
