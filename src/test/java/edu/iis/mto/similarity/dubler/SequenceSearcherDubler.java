@@ -5,11 +5,15 @@ import edu.iis.mto.search.SequenceSearcher;
 
 public class SequenceSearcherDubler implements SequenceSearcher {
 
+    private static int callsNumber = 0;
+
+    public static int getCallsNumber() {
+        return callsNumber;
+    }
+
     @Override
     public SearchResult search(int key, int[] seq) {
-        boolean foundStatus = false;
-        int elemPosition = -1;
-
+        callsNumber ++;
         SearchResult.Builder search = SearchResult.builder();
 
         for (int i = 0; i < seq.length; i++) {
