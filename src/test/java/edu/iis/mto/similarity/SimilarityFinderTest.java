@@ -29,8 +29,8 @@ public class SimilarityFinderTest {
     public void jackardSimilarityWithEmptySequenceTest() {
         int[] firstSequence = {1,2,3,4,5};
         int[] secondSequence = {};
-        double expectedIntersecton = calculateIntersection(firstSequence.length, secondSequence.length, 0);
-        Assert.assertThat(expectedIntersecton,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 0);
+        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
@@ -38,9 +38,9 @@ public class SimilarityFinderTest {
         int[] firstSequence = {1,2,3,4,5,11};
         int[] secondSequence = {1,9,8};
 
-        double expectedIntersecton = calculateIntersection(firstSequence.length, secondSequence.length, 1);
+        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 1);
 
-        Assert.assertThat(expectedIntersecton,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
@@ -48,16 +48,26 @@ public class SimilarityFinderTest {
         int[] firstSequence = {1,2,3,4,14,5,11};
         int[] secondSequence = {124,9,8};
 
-        double expectedIntersecton = calculateIntersection(firstSequence.length, secondSequence.length, 0);
-        Assert.assertThat(expectedIntersecton,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 0);
+        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
     public void jackardSimilaritySequencesSameSizeWithCommonElementTest() {
+        int[] firstSequence = {1,2,3,4,14,5,11};
+        int[] secondSequence = {1,18,2,15,16,11,5};
+
+        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 4);
+        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
     public void jackardSimilaritySequencesSameSizeWithoutCommonElementTest() {
+        int[] firstSequence = {1,2,3,4,5,6,7};
+        int[] secondSequence = {11,22,33,44,55,66,77};
+
+        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 0);
+        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
     @Test
