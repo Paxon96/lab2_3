@@ -1,8 +1,6 @@
 package edu.iis.mto.similarity;
 
-import edu.iis.mto.similarity.dubler.SequenceSearcherDubler;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -12,11 +10,6 @@ public class SimilarityFinderTest {
 
     private SimilarityFinder finder;
 
-    @Before
-    public void init(){
-        finder = new SimilarityFinder(new SequenceSearcherDubler());
-    }
-
     @Test
     public void jackardSimilarityWithEmptySequencesTest() {
         int[] firstSequence = {};
@@ -25,83 +18,4 @@ public class SimilarityFinderTest {
         Assert.assertThat(1.0 ,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
-    @Test
-    public void jackardSimilarityWithEmptySequenceTest() {
-        int[] firstSequence = {1,2,3,4,5};
-        int[] secondSequence = {};
-        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 0);
-        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
-    }
-
-    @Test
-    public void jackardSimilaritySequencesDifferentSizesWithCommonElementTest() {
-        int[] firstSequence = {1,2,3,4,5,11};
-        int[] secondSequence = {1,9,8};
-
-        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 1);
-
-        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
-    }
-
-    @Test
-    public void jackardSimilaritySequencesDifferentSizesWithoutCommonElementTest() {
-        int[] firstSequence = {1,2,3,4,14,5,11};
-        int[] secondSequence = {124,9,8};
-
-        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 0);
-        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
-    }
-
-    @Test
-    public void jackardSimilaritySequencesSameSizeWithCommonElementTest() {
-        int[] firstSequence = {1,2,3,4,14,5,11};
-        int[] secondSequence = {1,18,2,15,16,11,5};
-
-        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 4);
-        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
-    }
-
-    @Test
-    public void jackardSimilaritySequencesSameSizeWithoutCommonElementTest() {
-        int[] firstSequence = {1,2,3,4,5,6,7};
-        int[] secondSequence = {11,22,33,44,55,66,77};
-
-        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 0);
-        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
-    }
-
-    @Test
-    public void jackardSimilaritySequencesDifferentSizesWithPartCommonElementTest() {
-        int[] firstSequence = {1,2,3,4,5,6,7};
-        int[] secondSequence = {1,2,3,4,5,6,77,88,99,111,222,333};
-
-        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 6);
-        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
-    }
-
-    @Test
-    public void jackardSimilaritySequencesDifferentSizesWithAllCommonElementTest() {
-        int[] firstSequence = {1,2,3,4,5,6,7};
-        int[] secondSequence = {1,2,3,4,5,6,7,88,99,111,222,333};
-
-        double expectedIntersection = calculateIntersection(firstSequence.length, secondSequence.length, 7);
-        Assert.assertThat(expectedIntersection,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
-    }
-
-
-    @Test
-    public void jackardSimilarityNumberOfCallsForFirsSequenceTest(){
-        int[] firstSequence = {1,2,3,4,5,6,7};
-        int[] secondSequence = {1,2,3,4,5,6,7,88,99,111,222,333};
-
-        SequenceSearcherDubler.setCallsNumber(0);
-
-        finder.calculateJackardSimilarity(firstSequence,secondSequence);
-
-        Assert.assertThat(SequenceSearcherDubler.getCallsNumber(),is(equalTo(firstSequence.length)) );
-    }
-
-    private double calculateIntersection(int firstSeqLength, int secondSeqLength, int numberOfTheSameValues){
-        return (double) numberOfTheSameValues / ((double) firstSeqLength + secondSeqLength - numberOfTheSameValues);
-    }
 }
