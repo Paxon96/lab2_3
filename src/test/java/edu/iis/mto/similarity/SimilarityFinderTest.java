@@ -21,4 +21,13 @@ public class SimilarityFinderTest {
         Assert.assertThat(1.0 ,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
 
+    @Test
+    public void jackardSimilarityWithEmptySequenceTest() {
+        int[] firstSequence = {1,2,3};
+        int[] secondSequence = {};
+
+        finder = new SimilarityFinder((key, seq) -> SearchResult.builder().withFound(false).build());
+
+        Assert.assertThat(0.0,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+    }
 }
