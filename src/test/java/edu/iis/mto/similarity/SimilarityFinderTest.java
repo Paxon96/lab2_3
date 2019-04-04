@@ -1,5 +1,6 @@
 package edu.iis.mto.similarity;
 
+import edu.iis.mto.search.SearchResult;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,6 +15,8 @@ public class SimilarityFinderTest {
     public void jackardSimilarityWithEmptySequencesTest() {
         int[] firstSequence = {};
         int[] secondSequence = {};
+
+        finder = new SimilarityFinder((key, seq) -> SearchResult.builder().build());
 
         Assert.assertThat(1.0 ,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
