@@ -80,4 +80,19 @@ public class SimilarityFinderTest {
 
         Assert.assertThat(0.0,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
     }
+
+    @Test
+    public void jackardSimilaritySequencesDifferentSizesWithPartCommonElementTest() {
+        int[] firstSequence = {1,2,3};
+        int[] secondSequence = {1,2,3,77,88,99};
+
+        finder = new SimilarityFinder((key, seq) -> {
+            if(key == seq[0] || key == seq[1] || key == seq[2])
+                return SearchResult.builder().withFound(true).build();
+
+            return SearchResult.builder().build();
+        });
+
+        Assert.assertThat(0.5,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+    }
 }
