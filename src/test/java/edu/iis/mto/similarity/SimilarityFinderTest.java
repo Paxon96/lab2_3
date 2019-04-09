@@ -19,7 +19,7 @@ public class SimilarityFinderTest {
 
         finder = new SimilarityFinder((key, seq) -> SearchResult.builder().build());
 
-        Assert.assertThat(1.0 ,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(finder.calculateJackardSimilarity(firstSequence,secondSequence) ,is(equalTo(1.0)) );
     }
 
     @Test
@@ -29,7 +29,7 @@ public class SimilarityFinderTest {
 
         finder = new SimilarityFinder((key, seq) -> SearchResult.builder().withFound(false).build());
 
-        Assert.assertThat(0.0,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(finder.calculateJackardSimilarity(firstSequence,secondSequence),is(equalTo(0.0)) );
     }
 
     @Test
@@ -43,7 +43,7 @@ public class SimilarityFinderTest {
             return SearchResult.builder().build();
         });
 
-        Assert.assertThat(0.25,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(finder.calculateJackardSimilarity(firstSequence,secondSequence),is(equalTo(0.25)) );
     }
 
 
@@ -54,7 +54,7 @@ public class SimilarityFinderTest {
 
         finder = new SimilarityFinder((key, seq) -> SearchResult.builder().build());
 
-        Assert.assertThat(0.0,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(finder.calculateJackardSimilarity(firstSequence,secondSequence) ,is(equalTo(0.0)) );
     }
 
     @Test
@@ -69,7 +69,7 @@ public class SimilarityFinderTest {
             return SearchResult.builder().build();
         });
 
-        Assert.assertThat(0.2,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(finder.calculateJackardSimilarity(firstSequence,secondSequence),is(equalTo(0.2)) );
     }
 
     @Test
@@ -79,7 +79,7 @@ public class SimilarityFinderTest {
 
         finder = new SimilarityFinder((key, seq) -> SearchResult.builder().build());
 
-        Assert.assertThat(0.0,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(finder.calculateJackardSimilarity(firstSequence,secondSequence),is(equalTo(0.0)) );
     }
 
     @Test
@@ -94,7 +94,7 @@ public class SimilarityFinderTest {
             return SearchResult.builder().build();
         });
 
-        Assert.assertThat(0.5,is(equalTo(finder.calculateJackardSimilarity(firstSequence,secondSequence))) );
+        Assert.assertThat(finder.calculateJackardSimilarity(firstSequence,secondSequence),is(equalTo(0.5)) );
     }
 
     @Test
